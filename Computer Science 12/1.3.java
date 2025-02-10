@@ -1,3 +1,4 @@
+import java.util.Scanner;
 class Main {
     public static void main(String[] args)
     {
@@ -75,6 +76,43 @@ class Main {
         boolean even = (k % 2 == 0);
         System.out.println(even);
 
-        
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter your password: ");
+        String password = input.nextLine();
+        if (password.equals("XRay"))
+            System.out.println("Password entered successfully.");
+        else
+            System.out.println("Password entered incorrect.");
+
+        input.close();
+
+        int number = 79;
+        if (number > 50)
+        {
+            if (number < 60)
+            {
+                System.out.println("One");
+            }
+            else
+            {
+                System.out.println("Two");
+            }
+        }
+        else
+        {
+            if (number > 30)
+                System.out.println("Three");
+            else
+                System.out.println("Four");
+        }
+
+        Scanner integerNumber = new Scanner(System.in);
+        System.out.print("Enter an integer: ");
+        int num = integerNumber.nextInt();
+        if (num % 2 == 0)
+            System.out.println("The integer " + num + " is even");
+        else
+            System.out.println("The integer " + num + " is odd");
+        integerNumber.close();
     }
 }
