@@ -65,7 +65,7 @@ class Main {
     }
 
     public static double triangleArea(int a, int b, int c) {
-        double s = (a + b + c) / 2;
+        double s = (double)(a + b + c) / 2.0;
         double area = Math.sqrt(s * (s - a) * (s - b) * (s - c));
         return area;
     }
@@ -114,241 +114,116 @@ class Main {
         System.out.println("12. Exit");
     }
 
+    public static int getValidIntInput(Scanner inputs, String prompt) {
+        int num;
+        do {
+            System.out.print(prompt);
+            while (!inputs.hasNextInt()) {
+                System.out.print("Enter a valid number greater than or equal to 0: ");
+                inputs.next();
+            }
+            num = inputs.nextInt();
+        } while (num < 0);
+        return num;
+    }
+
     public static void executeFunction(int choice) {
         Scanner inputs = new Scanner(System.in);
-        int num1;
-        int num2;
-        int num3;
+        int num1, num2, num3;
 
-        switch (choice) {
-            case 1:
-                do {
-                    System.out.print("Enter the first number: ");
+        try {
+            switch (choice) {
+                case 1:
+                    num1 = getValidIntInput(inputs, "Enter the first number: ");
+                    num2 = getValidIntInput(inputs, "Enter the second number: ");
+                    System.out.printf("Inclusive sum of %,d and %,d: %,d %n", num1, num2, sum(num1, num2));
+                    break;
 
-                    while (!inputs.hasNextInt()) {
-                        System.out.print("Enter a number greater than or equal to 0: ");
-                        inputs.next();
+                case 2:
+                    num1 = getValidIntInput(inputs, "Enter a number: ");
+                    System.out.printf("Factorial of %,d (%,d!): %,.0f (%.4e) %n", num1, num1, factorial(num1), factorial(num1));
+                    break;
+
+                case 3:
+                    num1 = getValidIntInput(inputs, "Enter a number: ");
+                    System.out.printf("Is %,d Prime: %b %n", num1, isPrime(num1));
+                    break;
+
+                case 4:
+                    num1 = getValidIntInput(inputs, "Enter the first number: ");
+                    do {
+                        System.out.print("Enter the second number: ");
+
+                        while (!inputs.hasNextInt()) {
+                            System.out.printf("Please enter a valid integer greater than 0 and less than %d: ", num1 + 1);
+                            inputs.next();
+                        }
+
+                        num2 = inputs.nextInt();
+                        if (num2 > num1) {
+                            System.out.printf("Number must be less than %,d. %n", num1 + 1);
+                        }
+
+                        if (num2 < 1) {
+                            System.out.print("Number must be greater than 0. ");
+                        }
+                    } while (num2 > num1 || num2 < 1);
+                    System.out.printf("Greatest Common Factor between %,d and %,d: %,d %n", num1, num2, gcf(num1, num2));
+                    break;
+
+                case 5:
+                    num1 = getValidIntInput(inputs, "Enter the first number: ");
+                    num2 = getValidIntInput(inputs, "Enter the second number: ");
+                    System.out.printf("Average between %,d and %,d: %,.4f %n", num1, num2, average(num1, num2));
+                    break;
+
+                case 6:
+                    num1 = getValidIntInput(inputs, "Enter the first number (a): ");
+                    num2 = getValidIntInput(inputs, "Enter the second number (b): ");
+                    do {
+                        System.out.print("Enter the third number (c): ");
+                        num3 = inputs.nextInt();
+                        if (num3 > (num1 + num2)) {
+                            System.out.printf("The third number must be less than %,d. %n", (num1 + num2 + 1));
+                        }
+                    } while (num3 < 0 || num3 > (num1 + num2));
+
+                    if (num1 + num2 < num3 || num1 + num3 < num2 || num2 + num3 < num1) {
+                        System.out.println("These values do not form a valid triangle. Please enter valid sides.");
+                    } else {
+                        System.out.printf("Area of the triangle (where a = %,d, b = %,d, c = %,d): %,.4f %n", num1, num2, num3, triangleArea(num1, num2, num3));
                     }
-                    num1 = inputs.nextInt();
-                } while (num1 < 0);
+                    break;
 
-                do {
-                    System.out.print("Enter the second number: ");
+                case 7:
+                    num1 = getValidIntInput(inputs, "Enter a number: ");
+                    System.out.printf("Square root of %d: %,.4f %n", num1, mySqrt(num1));
+                    break;
 
-                    while (!inputs.hasNextInt()) {
-                        System.out.print("Enter a number greater than or equal to 0: ");
-                        inputs.next();
-                    }
-                    num2 = inputs.nextInt();
-                } while (num2 < 0);
+                case 8:
+                    num1 = getValidIntInput(inputs, "Enter the length: ");
+                    num2 = getValidIntInput(inputs, "Enter the width: ");
+                    System.out.printf("Area of a rectangle (where length = %d, width = %d): %,.4f %n", num1, num2, rectangleArea(num1, num2));
+                    break;
 
-                System.out.printf("Inclusive sum of %d and %d: %d %n", num1, num2, sum(num1, num2));
-                break;
+                case 9:
+                    num1 = getValidIntInput(inputs, "Enter the radius: ");
+                    System.out.printf("Area of circle with radius of %d: %,.4f %n", num1, circleArea(num1));
+                    break;
 
-            case 2:
-                do {
-                    System.out.print("Enter a number: ");
+                case 10:
+                    num1 = getValidIntInput(inputs, "Enter the radius: ");
+                    System.out.printf("Volume of sphere with radius of %d: %,.4f %n", num1, sphereVolume(num1));
+                    break;
 
-                    while (!inputs.hasNextInt()) {
-                        System.out.print("Enter a number greater than or equal to 0: ");
-                        inputs.next();
-                    }
-                    num1 = inputs.nextInt();
-                } while (num1 < 0);
-
-                System.out.printf("Factorial of %d (%d!): %,.0f (%.4e) %n", num1, num1, factorial(num1), factorial(num1));
-                break;
-
-            case 3:
-                do {
-                    System.out.print("Enter a number: ");
-
-                    while (!inputs.hasNextInt()) {
-                        System.out.print("Enter a number greater than or equal to 0: ");
-                        inputs.next();
-                    }
-                    num1 = inputs.nextInt();
-                } while (num1 < 0);
-
-                System.out.printf("Is %d Prime: %b %n", num1, isPrime(num1));
-                break;
-
-            case 4:
-                do {
-                    System.out.print("Enter the first number: ");
-
-                    while (!inputs.hasNextInt()) {
-                        System.out.print("Enter a number greater than or equal to 0: ");
-                        inputs.next();
-                    }
-                    num1 = inputs.nextInt();
-                } while (num1 < 0);
-
-                do {
-                    System.out.print("Enter the second number: ");
-
-                    while (!inputs.hasNextInt()) {
-                        System.out.printf("Enter a number greater than or equal to 0 and less than or equal to %d: ", num1);
-                        inputs.next();
-                    }
-
-                    num2 = inputs.nextInt();
-                } while (num2 < 1 || num1 < num2);
-
-                System.out.printf("Greatest Common Factor between %d and %d: %d %n", num1, num2, gcf(num1, num2));
-                break;
-
-            case 5:
-                do {
-                    System.out.print("Enter the first number: ");
-
-                    while (!inputs.hasNextInt()) {
-                        System.out.print("Enter a number greater than or equal to 0: ");
-                        inputs.next();
-                    }
-                    num1 = inputs.nextInt();
-                } while (num1 < 0);
-
-                do {
-                    System.out.print("Enter the second number: ");
-
-                    while (!inputs.hasNextInt()) {
-                        System.out.print("Enter a number greater than or equal to 0: ");
-                        inputs.next();
-                    }
-
-                    num2 = inputs.nextInt();
-                } while (num2 < 0);
-
-                System.out.printf("Average between %d and %d: %d %n", num1, num2, average(num1, num2));
-                break;
-
-            case 6:
-                do {
-                    System.out.print("Enter the first number (a): ");
-
-                    while (!inputs.hasNextInt()) {
-                        System.out.print("Enter a number greater than or equal to 0: ");
-                        inputs.next();
-                    }
-                    num1 = inputs.nextInt();
-                } while (num1 < 0);
-
-                do {
-                    System.out.print("Enter the second number (b): ");
-
-                    while (!inputs.hasNextInt()) {
-                        System.out.print("Enter a number greater than or equal to 0: ");
-                        inputs.next();
-                    }
-
-                    num2 = inputs.nextInt();
-                } while (num2 < 0);
-
-                do {
-                    System.out.print("Enter the third number (c): ");
-
-                    while (!inputs.hasNextInt()) {
-                        System.out.printf("Enter a number greater than or equal to 0 and less than or equal to %d: ", (num1 + num2));
-                        inputs.next();
-                    }
-
-                    num3 = inputs.nextInt();
-                    if (num3 > (num1 + num2)) {
-                        System.out.printf("The third number must be less than %d. ", (num1 + num2 + 1));
-                    }
-                } while (num3 < 0 || num3 > (num1 + num2));
-
-                System.out.printf("Area of a triangle (where a = %d, b = %d, c = %d): %n", num1, num2, num3, triangleArea(num1, num2, num3));
-                break;
-
-            case 7:
-                do {
-                    System.out.print("Enter a number: ");
-
-                    while (!inputs.hasNextInt()) {
-                        System.out.print("Enter a number greater than or equal to 0: ");
-                        inputs.next();
-                    }
-                    num1 = inputs.nextInt();
-                } while (num1 < 0);
-
-                System.out.printf("Square root of %d: %.4f %n", num1, mySqrt(num1));
-                break;
-
-            case 8:
-                do {
-                    System.out.print("Enter the length: ");
-
-                    while (!inputs.hasNextInt()) {
-                        System.out.print("Enter a number greater than or equal to 0: ");
-                        inputs.next();
-                    }
-                    num1 = inputs.nextInt();
-                } while (num1 < 0);
-
-                do {
-                    System.out.print("Enter the width: ");
-
-                    while (!inputs.hasNextInt()) {
-                        System.out.print("Enter a number greater than or equal to 0: ");
-                        inputs.next();
-                    }
-
-                    num2 = inputs.nextInt();
-                } while (num2 < 0);
-
-                System.out.printf("Area of a rectangle (where length = %d, width = %d): %,.4f %n", num1, num2, rectangleArea(num1, num2));
-
-            case 9:
-                do {
-                    System.out.print("Enter the radius: ");
-
-                    while (!inputs.hasNextInt()) {
-                        System.out.print("Enter a number greater than or equal to 0: ");
-                        inputs.next();
-                    }
-                    num1 = inputs.nextInt();
-                } while (num1 < 0);
-
-                System.out.printf("Area of cirlce with radius of %d: %.4f %n", num1, circleArea(num1));
-
-            case 10:
-                do {
-                    System.out.print("Enter the radius: ");
-
-                    while (!inputs.hasNextInt()) {
-                        System.out.print("Enter a number greater than or equal to 0: ");
-                        inputs.next();
-                    }
-                    num1 = inputs.nextInt();
-                } while (num1 < 0);
-
-                System.out.printf("Volume of sphere with radius of %d: %.4f %n", num1, sphereVolume(num1));
-
-            case 11:
-                do {
-                    System.out.print("Enter the radius: ");
-
-                    while (!inputs.hasNextInt()) {
-                        System.out.print("Enter a number greater than or equal to 0: ");
-                        inputs.next();
-                    }
-                    num1 = inputs.nextInt();
-                } while (num1 < 0);
-
-                do {
-                    System.out.print("Enter the height: ");
-
-                    while (!inputs.hasNextInt()) {
-                        System.out.print("Enter a number greater than or equal to 0: ");
-                        inputs.next();
-                    }
-
-                    num2 = inputs.nextInt();
-                } while (num2 < 0);
-
-                System.out.printf("Volume of cone with a radius of %d and height of %d: %.4f %n", num1, num2, coneVolume(num1, num2));
+                case 11:
+                    num1 = getValidIntInput(inputs, "Enter the radius: ");
+                    num2 = getValidIntInput(inputs, "Enter the height: ");
+                    System.out.printf("Volume of cone with a radius of %d and height of %d: %,.4f %n", num1, num2, coneVolume(num1, num2));
+                    break;
+            }
+        } catch (Exception e) {
+            System.out.println("Could not calculate as input is too large. Please try again with smaller numbers.");
         }
     }
 
