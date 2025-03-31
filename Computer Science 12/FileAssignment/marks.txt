@@ -1,0 +1,4 @@
+First Name      Last Name      Math           Science        English        History        Average
+John            Smith          75             75             75             75             75.00 
+Linda           Lee            85             85             85             85             85.00 
+Average                        80.00          80.00          80.00          80.00          80.00           
