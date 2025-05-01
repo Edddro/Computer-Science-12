@@ -14,7 +14,7 @@ class MarkAssignment {
         try {
             // Open input file for reading and and output file for writing
             Scanner inputFile = new Scanner(new File("data.txt"));
-            PrintWriter outputFile = new PrintWriter(new FileWriter("marks.txt"));
+            PrintWriter outputFile = new PrintWriter("marks.txt");
 
             // Check if the input file is empty
             if (!inputFile.hasNextLine()) {
@@ -104,8 +104,6 @@ class MarkAssignment {
         // Error handling - print appropiate error messages if necessary
         } catch (FileNotFoundException e) {
             System.out.println("Error: File 'data.txt' not found.");
-        } catch (IOException e) {
-            System.out.println("Error: Issue writing to output file.");
         } catch (Exception e) {
             System.out.println("Error: Please try again.");
         }

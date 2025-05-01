@@ -1,3 +1,6 @@
-Math Science English History
-John Smith  75 75 75 75
-Linda Lee   85 85 85 85
+Math Science English
+John Smith 75 75 75 75
+Linda Lee 85 85 85 85
+Eve Adams  90 85 abc
+Frank White 70 xyz 80
+Grace Hall 80 75 85

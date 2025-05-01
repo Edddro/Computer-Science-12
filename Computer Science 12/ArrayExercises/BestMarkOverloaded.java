@@ -34,7 +34,9 @@ class Main {
 
     // Method to display the highest mark and all marks for an integer array
     public static void outputHighestMark(int[] marks) {
-        System.out.printf("The highest mark out of %d students is: %d%% %n", marks.length, calculateHighestMark(marks));
+        // Initializes an integer, highestMark with the returned integer from the calculateHighestMark method
+        int highestMark = calculateHighestMark(marks);
+        System.out.printf("The highest mark out of %d students is: %d%% %n", marks.length, highestMark);
         System.out.printf("The marks of all %d students: %n", marks.length);
         // Prints each item in the marks array as an integer
         for (int mark : marks) {
@@ -44,7 +46,9 @@ class Main {
 
     // Method to display the highest mark and all marks for a double array
     public static void outputHighestMark(double[] marks) {
-        System.out.printf("The highest mark out of %d students is: %.2f%% %n", marks.length, calculateHighestMark(marks));
+        // Initializes a double, highestMark with the returned double from the calculateHighestMark method
+        double highestMark = calculateHighestMark(marks);
+        System.out.printf("The highest mark out of %d students is: %.2f%% %n", marks.length, highestMark);
         System.out.printf("The marks of all %d students: %n", marks.length);
         // Prints each item in the marks array as a double
         for (double mark : marks) {

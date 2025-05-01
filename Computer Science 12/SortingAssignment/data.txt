@@ -1,0 +1,4 @@
+Toronto 82 50 20
+Vancouver 82 45 25
+Calgary 82 45 25
+Ottawa 82 20 50

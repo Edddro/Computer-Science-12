@@ -46,7 +46,10 @@ class Main {
             }
         }
 
-        System.out.printf("The highest mark out of %d students is: %d%% %n", marks.length, calculateHighestMark(marks));
+        // Initializes an integer, highestMark with the returned integer from the calculateHighestMark method
+        int highestMark = calculateHighestMark(marks);
+
+        System.out.printf("The highest mark out of %d students is: %d%% %n", marks.length, highestMark);
         System.out.printf("The marks of all %d students: %n", marks.length);
         for (int mark : marks) {
             System.out.printf("%d%% %n", mark);

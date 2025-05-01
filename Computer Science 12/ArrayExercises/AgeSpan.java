@@ -47,8 +47,15 @@ class Main {
             ages[i] = (int) (Math.random() * 100) + 1;
         }
 
-        System.out.printf("The oldest age is %d years old.\n", max(ages));
-        System.out.printf("The minimum age is %d years old.\n", min(ages));
-        System.out.printf("The difference between %d and %d is %d years", max(ages), min(ages), difference(max(ages), min(ages)));
+        // Initializes an integer, max, with the returned integer from the max(ages) method
+        int max = max(ages);
+        // Initializes an integer, min, with the returned integer from the min(ages) method
+        int min = min(ages);
+        // Initializes an integer, difference, with the returned integer from the difference(max, min) method
+        int difference = difference(max, min);
+
+        System.out.printf("The oldest age is %d years old.\n", max);
+        System.out.printf("The minimum age is %d years old.\n", min);
+        System.out.printf("The difference between %d and %d is %d years", max, min, difference);
     }
 }

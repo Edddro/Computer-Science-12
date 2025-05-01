@@ -48,7 +48,7 @@ class Calendar {
             }
             System.out.println();
 
-            for (int col = 0; col < 3; col++) {
+            for (inct col = 0; col < 3; col++) {
                 for (String day : dayNames) {
                     System.out.printf("%5s", day);
                 }
